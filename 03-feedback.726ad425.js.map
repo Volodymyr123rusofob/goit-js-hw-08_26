@@ -1,1 +1,0 @@
-{"mappings":"AAAiBA,SAASC,cAAc,QAC/BC,iBAAiB,QAASC","sources":["src/js/03-feedback.js"],"sourcesContent":["const formLink = document.querySelector('form');\nformLink.addEventListener('input', saveValue);\n"],"names":["document","querySelector","addEventListener","saveValue"],"version":3,"file":"03-feedback.726ad425.js.map"}
