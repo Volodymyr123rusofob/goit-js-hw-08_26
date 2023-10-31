@@ -28,6 +28,6 @@ const elementListGalleryLi = galleryItems
 
 listUlGallery.insertAdjacentHTML('afterbegin', elementListGalleryLi);
 
-const lightbox = new SimpleLightbox('.gallery a', {
+new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });

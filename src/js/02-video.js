@@ -7,13 +7,11 @@ let playbackTime = 0;
 
 player.on(
   'timeupdate',
-  throttle(function () {
-    player.getCurrentTime().then(function (seconds) {
-      playbackTime = seconds;
-      return playbackTime;
-    });
-    localStorage.setItem('videoplayer - current - time', playbackTime);
-  }, 1000)
+  throttle(
+    ({ seconds }) =>
+      localStorage.setItem('videoplayer - current - time', seconds),
+    1000
+  )
 );
 
 const savedPlaybackTime = localStorage.getItem('videoplayer - current - time');
