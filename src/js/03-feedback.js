@@ -5,7 +5,7 @@ const refs = {
   email: document.querySelector('[name="email"]'),
 };
 
-const saveFormValue = {};
+let saveFormValue = {};
 
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onTextareaInput, 500));
@@ -18,28 +18,27 @@ function onFormSubmit(event) {
     console.log(localStorage.getItem('feedback-form-state'));
     event.currentTarget.reset();
     localStorage.removeItem('feedback-form-state');
+    saveFormValue = {};
   } else {
     alert('Please enter your feedback');
   }
 }
 
 function onTextareaInput(event) {
+  const formState = {
+    message: refs.textarea.value,
+    email: refs.email.value,
+  };
   saveFormValue[event.target.name] = event.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(saveFormValue));
+  localStorage.setItem('feedback-form-state', JSON.stringify(formState));
 }
 
 function chekForm() {
-  const saveMessage = localStorage.getItem('feedback-form-state');
-  const valueFormInput = JSON.parse(saveMessage);
-  if (valueFormInput.message) {
-    refs.textarea.value = valueFormInput.message;
-  } else {
-    refs.textarea.value = '';
-  }
-
-  if (valueFormInput.email) {
-    refs.email.value = valueFormInput.email;
-  } else {
-    refs.email.value = '';
+  const valueFormInput = JSON.parse(
+    localStorage.getItem('feedback-form-state')
+  );
+  if (valueFormInput) {
+    refs.textarea.value = valueFormInput.message || '';
+    refs.email.value = valueFormInput.email || '';
   }
 }
