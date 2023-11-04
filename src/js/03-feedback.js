@@ -25,12 +25,12 @@ function onFormSubmit(event) {
 }
 
 function onTextareaInput(event) {
-  const formState = {
+  saveFormValue = {
     message: refs.textarea.value,
     email: refs.email.value,
   };
   saveFormValue[event.target.name] = event.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(formState));
+  localStorage.setItem('feedback-form-state', JSON.stringify(saveFormValue));
 }
 
 function chekForm() {
